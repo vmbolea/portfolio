@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio · Víctor Martínez Bolea</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1b2d;
+    --teal: #1a5f6e;
+    --teal-light: #2a8a9e;
+    --sand: #f5f0e8;
+    --warm: #e8dfc8;
+    --accent: #c85a2a;
+    --muted: #6b7a8d;
+    --white: #fafaf7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--ink);
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 100px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26,95,110,0.4) 0%, transparent 70%);
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,90,42,0.2) 0%, transparent 70%);
+  }
+
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+
+  .cover h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 72px;
+    line-height: 1.0;
+    margin-bottom: 8px;
+  }
+
+  .cover-sub {
+    font-size: 18px;
+    color: rgba(250,250,247,0.6);
+    font-weight: 300;
+    margin-bottom: 60px;
+    font-style: italic;
+  }
+
+  .cover-desc {
+    max-width: 520px;
+    font-size: 15px;
+    color: rgba(250,250,247,0.8);
+    line-height: 1.8;
+    border-left: 3px solid var(--teal-light);
+    padding-left: 24px;
+    margin-bottom: 60px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 40px;
+    font-size: 12px;
+    color: rgba(250,250,247,0.5);
+    letter-spacing: 1px;
+  }
+
+  .cover-meta span { text-transform: uppercase; }
+
+  .cover-projects-count {
+    position: absolute;
+    bottom: 80px; right: 100px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    user-select: none;
+  }
+
+  /* PROJECT PAGES */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    page-break-after: always;
+  }
+
+  .project:nth-child(even) .project-info { order: 2; }
+  .project:nth-child(even) .project-visual { order: 1; }
+
+  .project-info {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--white);
+  }
+
+  .project-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: 80px;
+    color: var(--warm);
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+
+  .project-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .project-desc strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .tag {
+    background: var(--sand);
+    border: 1px solid var(--warm);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .project-link {
+    font-size: 12px;
+    color: var(--teal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--teal-light);
+    padding-bottom: 2px;
+    letter-spacing: 0.5px;
+  }
+
+  .relevance-box {
+    margin-top: 28px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-light));
+    color: white;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .relevance-box strong {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 6px;
+  }
+
+/* VISUAL PANELS */
+.project-visual {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+}
+
+.visual-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  position: relative;
+}
+
+.project-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+  /* PRINT */
+  @media print {
+    .cover, .project { page-break-after: always; }
+    body { font-size: 12px; }
+  }
+
+  @media (max-width: 800px) {
+    .cover { padding: 60px 40px; }
+    .cover h1 { font-size: 48px; }
+    .project { grid-template-columns: 1fr; min-height: auto; }
+    .project-visual { min-height: 300px; }
+    .project:nth-child(even) .project-info { order: unset; }
+    .project:nth-child(even) .project-visual { order: unset; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Portfolio de proyectos · 2021–2025</div>
+  <h1>Víctor<br>Martínez<br>Bolea</h1>
+  <p class="cover-sub">Análisis territorial · SIG · Evaluación ambiental</p>
+  <p class="cover-desc">
+    Selección de seis proyectos representativos que combinan análisis geoespacial, diseño de indicadores ambientales y cartografía aplicada. Desarrollados en contextos de investigación, consultoría y participación ciudadana.
+  </p>
+  <div class="cover-meta">
+    <span>victormartinezbolea@gmail.com</span>
+    <span>+34 630 57 10 46</span>
+    <span>github.com/vmbolea</span>
+  </div>
+  <div class="cover-projects-count">6</div>
+</div>
+
+<!-- PROJECT 1: WWF DASHBOARD -->
+<div class="project">
+  <div class="project-info">
+    <div class="project-number">01</div>
+    <div class="project-tag">Indicadores · Dashboard · Conservación</div>
+    <h2 class="project-title">Dashboard de monitorización de proyectos WWF</h2>
+    <p class="project-desc">
+      Panel interactivo para el seguimiento de <strong>19 iniciativas de conservación</strong> de WWF, clasificadas por áreas temáticas (bosques, agua dulce, marina, agricultura y especies).<br><br>
+      Incluye visualización geográfica de proyectos, estado de avance, <strong>hectáreas protegidas, presupuesto ejecutado</strong> y resultados por área. Diseñado para análisis comparativo y comunicación de impacto ambiental.
+    </p>
+    <div class="tags">
+      <span class="tag">QGIS</span>
+      <span class="tag">JavaScript</span>
+      <span class="tag">Leaflet</span>
+      <span class="tag">Indicadores KPI</span>
+      <span class="tag">GeoJSON</span>
+    </div>
+    <a class="project-link" href="https://vmbolea.github.io/dashboard_wwf_demo/">vmbolea.github.io/dashboard_wwf_demo</a>
+    <div class="relevance-box">
+      <strong>Relevancia para el puesto</strong>
+      Demuestra capacidad para diseñar y visualizar indicadores de seguimiento de planes ambientales, análisis de impacto y elaboración de herramientas de apoyo a la toma de decisiones — funciones centrales del puesto.
+    </div>
+  </div>
+  <div class="project-visual">
+    <div class="visual-bg">
+      <img class="project-image" src="imagenes/project_1.png" alt="Dashboard WWF">
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 2: DOÑANA -->
+<div class="project">
+  <div class="project-visual">
+    <div class="visual-bg">
+      <img class="project-image" src="imagenes/project_2.png" alt="Impactos ambientales Doñana">
+    </div>
+  </div>
+  <div class="project-info">
+    <div class="project-number">02</div>
+    <div class="project-tag">Webmapping · Evaluación ambiental · Georreferenciación</div>
+    <h2 class="project-title">Impactos ambientales en Doñana</h2>
+    <p class="project-desc">
+      Aplicación de <strong>webmapping interactivo</strong> para la visualización georreferenciada de impactos ambientales en el Parque Nacional de Doñana.<br><br>
+      Incluye extracción automática de puntos de impacto a partir de documentos mediante <strong>Python y OpenCV</strong>, georreferenciación de los datos y visualización dinámica con Leaflet. Desarrollado en colaboración con WWF.
+    </p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">OpenCV</span>
+      <span class="tag">Leaflet</span>
+      <span class="tag">Georreferenciación</span>
+      <span class="tag">GeoJSON</span>
+    </div>
+    <a class="project-link" href="https://vmbolea.github.io/demo_wwf/">vmbolea.github.io/demo_wwf</a>
+    <div class="relevance-box">
+      <strong>Relevancia para el puesto</strong>
+      Ejemplo directo de evaluación ambiental aplicada con herramientas cartográficas. Muestra capacidad para transformar datos de campo o documentales en cartografía interpretable para la toma de decisiones.
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 3: NATURE / InvasiBES -->
+<div class="project">
+  <div class="project-info">
+    <div class="project-number">03</div>
+    <div class="project-tag">Investigación · Análisis espacial · Publicación científica</div>
+    <h2 class="project-title">Análisis de impacto de especies invasoras en servicios ecosistémicos (InvasiBES)</h2>
+    <p class="project-desc">
+      Participación como <strong>técnico GIS y coautor</strong> en investigación publicada en <em>Nature Communications</em> (2024). El estudio analiza el impacto de especies invasoras sobre los servicios ecosistémicos a <strong>escala europea</strong>.<br><br>
+      Trabajo realizado en el CSIC (Zaragoza): análisis espacial avanzado, modelización estadística y generación de cartografía temática para dar soporte a las conclusiones del equipo investigador.
+    </p>
+    <div class="tags">
+      <span class="tag">QGIS</span>
+      <span class="tag">R</span>
+      <span class="tag">Modelización espacial</span>
+      <span class="tag">Servicios ecosistémicos</span>
+      <span class="tag">Escala europea</span>
+    </div>
+    <a class="project-link" href="https://www.nature.com/articles/s41467-024-46818-3">nature.com/articles/s41467-024-46818-3</a>
+    <div class="relevance-box">
+      <strong>Relevancia para el puesto</strong>
+      Acredita rigor técnico y capacidad de análisis ambiental a escala territorial amplia. La evaluación de servicios ecosistémicos conecta directamente con la evaluación ambiental de planes y estrategias de sostenibilidad.
+    </div>
+  </div>
+  <div class="project-visual">
+    <div class="visual-bg">
+      <img class="project-image" src="imagenes/project_3.png" alt="Nature Communications - Especies invasoras">
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 4: MUNDO REBUZNO -->
+<div class="project">
+  <div class="project-visual">
+    <div class="visual-bg">
+      <img class="project-image" src="imagenes/project_4.png" alt="Viales municipales Murillo de Gállego">
+    </div>
+  </div>
+  <div class="project-info">
+    <div class="project-number">04</div>
+    <div class="project-tag">SIG · Participación ciudadana · Teledetección</div>
+    <h2 class="project-title">Viales de dominio público · Mundo Rebuzno</h2>
+    <p class="project-desc">
+      Cartografía interactiva para la asociación <strong>Mundo Rebuzno</strong> con el objetivo de identificar y recuperar los viales de dominio público del municipio de <strong>Murillo de Gállego (Huesca)</strong>.<br><br>
+      El mapa combina la delimitación de los viales con el análisis de <strong>densidad de vegetación (NDVI)</strong> a partir de imágenes Sentinel-2, permitiendo priorizar tramos con mayor necesidad de actuación. Herramienta directamente útil para la planificación de trabajos de recuperación.
+    </p>
+    <div class="tags">
+      <span class="tag">QGIS</span>
+      <span class="tag">Sentinel-2</span>
+      <span class="tag">NDVI</span>
+      <span class="tag">Leaflet</span>
+      <span class="tag">Dominio público</span>
+    </div>
+    <a class="project-link" href="https://vmbolea.github.io/mundo_rebuzno/">vmbolea.github.io/mundo_rebuzno</a>
+    <div class="relevance-box">
+      <strong>Relevancia para el puesto</strong>
+      Ejemplo de análisis territorial aplicado a planificación local y participación ciudadana. Integra teledetección, información catastral y cartografía para apoyar decisiones de gestión del territorio.
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 5: GRUPO DE CONSUMO -->
+<div class="project">
+  <div class="project-info">
+    <div class="project-number">05</div>
+    <div class="project-tag">SIG · Economía local · Cartografía temática</div>
+    <h2 class="project-title">Mapa de proveedores · Grupo de consumo de Ayerbe</h2>
+    <p class="project-desc">
+      Cartografía interactiva para el <strong>grupo de consumo de Ayerbe (Huesca)</strong> con la localización georreferenciada y los datos de contacto de todos los <strong>proveedores locales</strong> que abastecen al grupo.<br><br>
+      La herramienta facilita la gestión del circuito corto de distribución, permite visualizar la cobertura territorial de los productores y sirve como referencia para nuevos miembros del grupo y potenciales proveedores.
+    </p>
+    <div class="tags">
+      <span class="tag">QGIS</span>
+      <span class="tag">Leaflet</span>
+      <span class="tag">GeoJSON</span>
+      <span class="tag">Circuito corto</span>
+      <span class="tag">Economía social</span>
+    </div>
+    <a class="project-link" href="https://vmbolea.github.io/grupo_consumo/">vmbolea.github.io/grupo_consumo</a>
+    <div class="relevance-box">
+      <strong>Relevancia para el puesto</strong>
+      Muestra capacidad de aplicar herramientas SIG a escala local con impacto social directo. La integración de información de actores locales en cartografía tiene paralelismo con procesos participativos de Agenda Urbana.
+    </div>
+  </div>
+  <div class="project-visual">
+    <div class="visual-bg">
+      <img class="project-image" src="imagenes/project_5.png" alt="Proveedores Grupo de consumo Ayerbe">
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT 6: GEOAGENDA -->
+<div class="project">
+  <div class="project-visual">
+    <div class="visual-bg">
+      <img class="project-image" src="imagenes/project_6.png" alt="GeoAgenda Cultural">
+    </div>
+  </div>
+  <div class="project-info">
+    <div class="project-number">06</div>
+    <div class="project-tag">Plataforma · Ciencia ciudadana · Integración de datos</div>
+    <h2 class="project-title">GeoAgenda Cultural · Plataforma de datos geoespaciales</h2>
+    <p class="project-desc">
+      Sistema para la <strong>recogida, gestión y visualización de datos geoespaciales</strong> de agenda cultural y eventos, con enfoque de ciencia ciudadana.<br><br>
+      Integra APIs externas, almacena los datos en <strong>PostGIS</strong> y los visualiza en un mapa interactivo con Leaflet. Desarrollado íntegramente como proyecto propio, demuestra capacidad para construir flujos de datos espaciales de principio a fin.
+    </p>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">PostGIS</span>
+      <span class="tag">APIs REST</span>
+      <span class="tag">Leaflet</span>
+      <span class="tag">JavaScript</span>
+    </div>
+    <a class="project-link" href="https://github.com/vmbolea/GeoAgenda-Cultural">github.com/vmbolea/GeoAgenda-Cultural</a>
+    <div class="relevance-box">
+      <strong>Relevancia para el puesto</strong>
+      Muestra capacidad técnica completa para integrar fuentes de datos heterogéneas en plataformas de información territorial, habilidad útil para el diseño de sistemas de seguimiento de indicadores urbanos.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
